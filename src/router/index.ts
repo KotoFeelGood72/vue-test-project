@@ -13,7 +13,7 @@ const router = createRouter({
       children: [
         {
           path: 'edit',
-          component: () => import('@/views/ProfileView/PrrofileEditView.vue'),
+          component: () => import('@/views/ProfileView/ProfileEditView.vue'),
         },
         {
           path: '/profile',
