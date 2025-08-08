@@ -4,15 +4,16 @@
     <input
       v-model="localValue"
       :placeholder="placeholder"
-      :type="type"
+      type="text"
       :name="name"
       :id="id"
-      :class="className"
+      :class="[className, { error: error }]"
       :style="style"
       :disabled="disabled"
       :readonly="readonly"
       :required="required"
     />
+    <div v-if="error" class="error-message">{{ error }}</div>
   </div>
 </template>
 
@@ -23,7 +24,6 @@ import type { InputTypes } from "@/types/InputTypes";
 const props = withDefaults(defineProps<InputTypes>(), {
   modelValue: "",
   placeholder: "",
-  type: "text",
   name: "",
   id: "",
   className: "",
@@ -60,6 +60,16 @@ const localValue = computed({
     width: 100%;
     display: block;
     min-height: 60px;
+
+    &.error {
+      border-color: #dc3545;
+    }
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
   }
 }
 </style>

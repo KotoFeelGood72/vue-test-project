@@ -1,6 +1,6 @@
 <template>
   <div class="avatar_single__img">
-    <img :src="image.src" :alt="image.alt" v-if="image" />
+    <img :src="image.src" :alt="image.file_name" v-if="image" />
     <div v-else class="avatar_single__img__default">
       <span>НЕТ ФОТО</span>
     </div>
@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import type { AvatarSingleImgProps } from "@/types/ProfileCardTypes";
+import type { Avatar } from "@/types/api";
 
 defineProps<{
-  image: AvatarSingleImgProps | null;
+  image: Avatar | null | undefined;
 }>();
 </script>
 

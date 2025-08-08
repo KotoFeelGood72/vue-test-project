@@ -1,14 +1,23 @@
 <template>
   <div class="profile_view">
-    <ProfileCard :profile="user" />
+    <ProfileCard :profile="user" @open-modal="openModal('editProfile')" />
   </div>
 </template>
 
 <script setup lang="ts">
 import ProfileCard from "@/components/cards/ProfileCard.vue";
-import { useUserStoreRefs } from "@/stores/useUserStore";
+import { useUserStoreRefs, useUserStore } from "@/stores/useUserStore";
+import { onMounted } from "vue";
+import { useModalStore } from "@/stores/useModalStore";
 
 const { user } = useUserStoreRefs();
+const { fetchUser } = useUserStore();
+
+const { openModal } = useModalStore();
+
+onMounted(() => {
+  fetchUser();
+});
 </script>
 
 <style scoped lang="scss">
@@ -16,6 +25,17 @@ const { user } = useUserStoreRefs();
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100dvh;
+  min-height: 60vh;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+.error {
+  color: #dc3545;
 }
 </style>

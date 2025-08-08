@@ -1,34 +1,40 @@
 <template>
   <div class="profile-card">
-    <AvatarSingleImg :image="profile.image" />
+    <AvatarSingleImg :image="profile?.avatar" />
     <div class="profile_card__content">
       <div class="profile_card__content_name">
-        <h3>{{ profile.name }}</h3>
-        <p>{{ profile.description }}</p>
+        <h3>{{ fullName }}</h3>
+        <p v-if="profile?.about_text">{{ profile?.about_text }}</p>
       </div>
-      <RouterLink :to="'/profile/edit'" class="profile_card__edit_link">
+      <div @click="onClickEditProfile" class="profile_card__edit_link">
         Редактировать профиль
-      </RouterLink>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ProfileCardTypes } from "@/types/ProfileCardTypes";
+import { computed, defineEmits } from "vue";
+import type { UserProfile } from "@/types/api";
 import AvatarSingleImg from "@/components/ui/AvatarSingleImg.vue";
+import { buildString } from "@/utils/buildString";
 
-withDefaults(
-  defineProps<{
-    profile: ProfileCardTypes;
-  }>(),
-  {
-    profile: () => ({
-      name: "Нет имени",
-      description: "Нет описания",
-      image: null,
-    }),
-  }
-);
+const emit = defineEmits<{
+  (e: "open-modal", modalName: string): void;
+}>();
+
+const onClickEditProfile = () => {
+  emit("open-modal", "editProfile");
+};
+
+const props = defineProps<{
+  profile: UserProfile | null;
+}>();
+
+const fullName = computed(() => {
+  const { first_name, last_name } = props.profile?.user || {};
+  return buildString([last_name, first_name]);
+});
 </script>
 
 <style scoped lang="scss">
@@ -38,8 +44,10 @@ withDefaults(
   padding: 40px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 22px;
   text-align: center;
+  max-width: 260px;
 }
 
 .profile_card__content_name {
@@ -61,13 +69,13 @@ withDefaults(
 .profile_card__edit_link {
   font-size: 16px;
   color: #8d8d8d;
-  text-decoration: none;
-  border-bottom: 1px solid #8d8d8d;
+  text-decoration: underline;
+  text-underline-offset: 5px;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     color: #000;
-    border-bottom: 1px solid #000;
   }
 }
 </style>

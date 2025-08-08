@@ -2,13 +2,13 @@
   "id": 1,
   "avatar": {
     "id": 1,
-    "src": "https://place-hold.it/300",
+    "src": "./placeholder.jpg",
     "file_name": "Я на даче",
     "ext": "png"
   },
   "user": {
-    "first_name": "Константин",
-    "last_name": "Попов",
+    "first_name": "Иван",
+    "last_name": "Иванов",
     "middle_name": "Константинович"
   },
   "about_text": "Меня зовут Костя, у меня своя СТО. Чиню машины"

@@ -1,50 +1,13 @@
-export type InputType =
-  | 'text'
-  | 'email'
-  | 'password'
-  | 'number'
-  | 'tel'
-  | 'url'
-  | 'search'
-  | 'date'
-  | 'time'
-  | 'datetime-local'
-  | 'month'
-  | 'week'
-  | 'color'
-  | 'file'
-  | 'range'
-  | 'textarea'
-  | 'select'
-  | 'checkbox'
-  | 'radio'
-  | 'submit'
-  | 'reset'
-  | 'button'
-  | 'image'
-  | 'hidden'
-  | 'datetime'
-  | 'email'
-  | 'month'
-  | 'number'
-  | 'password'
-  | 'search'
-  | 'tel'
-  | 'text'
-  | 'time'
-  | 'url'
-  | 'week'
-
 export interface InputTypes {
-  modelValue: string
-  placeholder: string
-  type: InputType
-  name: string
+  modelValue?: string
+  placeholder?: string
+  name?: string
   id: string
-  className: string
-  style: string
+  className?: string
+  style?: string
   label?: string
-  disabled: boolean
-  readonly: boolean
+  disabled?: boolean
+  readonly?: boolean
   required: boolean
+  error?: string
 }

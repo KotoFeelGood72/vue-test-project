@@ -6,23 +6,7 @@ const router = createRouter({
     {
       name: 'profile',
       path: '/profile',
-      children: [
-        {
-          name: 'profile-edit',
-          path: 'edit',
-          component: () => import('@/views/ProfileView/ProfileEditView.vue'),
-        },
-        {
-          name: 'profile-view',
-          path: '',
-          component: () => import('@/views/ProfileView/ProfileView.vue'),
-        },
-      ],
-    },
-    {
-      name: 'main',
-      path: '/:pathMatch(.*)*',
-      redirect: '/profile',
+      component: () => import('@/views/ProfileView/ProfileView.vue'),
     },
   ],
 })

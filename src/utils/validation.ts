@@ -1,7 +1,6 @@
 import type { ValidationResult, ValidationError } from '@/types/api'
 
-const CYRILLIC_REGEX = /^[а-яё\s]+$/i
-
+const CYRILLIC_REGEX = /^[а-яёa-z\s.,!?-]+$/i
 // Валидация поля
 const validateField = (value: string, isRequired: boolean = true): boolean => {
   if (!isRequired && (!value || value.trim() === '')) return true
