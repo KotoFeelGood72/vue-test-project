@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "avatar": {
+    "id": 1,
+    "src": "https://place-hold.it/300",
+    "file_name": "Я на даче",
+    "ext": "png"
+  },
+  "user": {
+    "first_name": "Константин",
+    "last_name": "Попов",
+    "middle_name": "Константинович"
+  },
+  "about_text": "Меня зовут Костя, у меня своя СТО. Чиню машины"
+}
