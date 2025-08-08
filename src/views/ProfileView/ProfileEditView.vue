@@ -79,23 +79,23 @@
 </template>
 
 <script setup lang="ts">
-import CustomButton from '@/components/ui/CustomButton.vue'
-import FileInput from '@/components/input/FileInput.vue'
-import CustomInput from '@/components/input/CustomInput.vue'
-import { useUserStoreRefs } from '@/stores/useUserStore'
-import { useRouter } from 'vue-router'
+import CustomButton from "@/components/ui/CustomButton.vue";
+import FileInput from "@/components/input/FileInput.vue";
+import CustomInput from "@/components/input/CustomInput.vue";
+import { useUserStoreRefs } from "@/stores/useUserStore";
+import { useRouter } from "vue-router";
 
-const { user } = useUserStoreRefs()
-const router = useRouter()
+const { user } = useUserStoreRefs();
+const router = useRouter();
 
 const onProfileSave = () => {
   // Логика сохранения профиля
-  console.log('Сохранение профиля')
-}
+  console.log("Сохранение профиля");
+};
 
 const cancelProfileEdit = () => {
-  router.push('/profile')
-}
+  router.push("/profile");
+};
 </script>
 
 <style scoped></style>
