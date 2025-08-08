@@ -123,5 +123,8 @@ const cancelProfileEdit = () => {
 .profile_edit__form {
   width: 100%;
   max-width: 608px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
 }
 </style>
