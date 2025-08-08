@@ -1,5 +1,5 @@
 <template>
-  <div class="custom_input">
+  <div class="custom_input" :class="{ error: error }">
     <label v-if="label" :for="id">{{ label }}</label>
     <input
       v-model="localValue"
@@ -7,7 +7,7 @@
       type="text"
       :name="name"
       :id="id"
-      :class="[className, { error: error }]"
+      :class="className"
       :style="style"
       :disabled="disabled"
       :readonly="readonly"
@@ -47,6 +47,22 @@ const localValue = computed({
 <style scoped lang="scss">
 .custom_input {
   display: block;
+
+  &.error {
+    input {
+      border-color: #ff0000;
+    }
+    .error-message {
+      color: #ff0000;
+      font-size: 10px;
+      margin-top: 5px;
+      display: block;
+    }
+
+    label {
+      color: #ff0000;
+    }
+  }
   label {
     font-size: 14px;
     margin-bottom: 10px;
@@ -60,16 +76,7 @@ const localValue = computed({
     width: 100%;
     display: block;
     min-height: 60px;
-
-    &.error {
-      border-color: #dc3545;
-    }
-  }
-
-  .error-message {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 16px;
   }
 }
 </style>

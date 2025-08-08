@@ -13,12 +13,14 @@
     <div class="image_upload__preview">
       <AvatarSingleImg
         :image="
-          modelValue ? {
-            id: 0,
-            src: modelValue.preview || '',
-            file_name: modelValue.file.name,
-            ext: modelValue.file.name.split('.').pop() || ''
-          } : null
+          modelValue
+            ? {
+                id: 0,
+                src: modelValue.preview || '',
+                file_name: modelValue.file.name,
+                ext: modelValue.file.name.split('.').pop() || '',
+              }
+            : null
         "
       />
       <button type="button" class="image_upload__remove" @click="handleRemoveFile">
@@ -58,21 +60,16 @@ const handleFileChange = async (event: Event) => {
   const target = event.target as HTMLInputElement;
   const files = target.files;
 
-  console.log('📁 FileInput: handleFileChange вызван');
-
   if (!files || files.length === 0) {
-    console.log('📁 FileInput: Файлы не выбраны');
     emit("update:modelValue", null);
     error.value = "";
     return;
   }
 
   const file = files[0];
-  console.log('📁 FileInput: Выбран файл:', file.name, 'размер:', file.size);
 
   try {
     const result = await uploadImage(file);
-    console.log('📁 FileInput: Результат uploadImage:', result);
 
     if (result.error) {
       error.value = result.error;
@@ -80,11 +77,9 @@ const handleFileChange = async (event: Event) => {
       return;
     }
 
-    console.log('📁 FileInput: Эмитим update:modelValue с результатом');
     emit("update:modelValue", result);
     error.value = "";
-  } catch (err) {
-    console.error('📁 FileInput: Ошибка при обработке изображения:', err);
+  } catch {
     error.value = "Ошибка при обработке изображения";
     emit("error", error.value);
   }

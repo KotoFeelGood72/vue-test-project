@@ -16,7 +16,7 @@ export const useUserStore = defineStore('users', {
         this.user = await ApiService.getUser()
       } catch (error) {
         this.error = 'Ошибка при загрузке данных пользователя'
-        console.error(error)
+        throw error
       } finally {
         this.loading = false
       }

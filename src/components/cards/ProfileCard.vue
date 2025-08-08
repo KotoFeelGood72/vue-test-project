@@ -47,7 +47,7 @@ const fullName = computed(() => {
   align-items: center;
   gap: 22px;
   text-align: center;
-  max-width: 260px;
+  max-width: 270px;
 }
 
 .profile_card__content_name {

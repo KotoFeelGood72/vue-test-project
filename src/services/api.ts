@@ -1,7 +1,7 @@
 import type { UserProfile, EditUserRequest, FileUploadResponse } from '@/types/api'
-import { delay } from '@/utils/delay'
 import userData from '@/mocks/userData.json'
 import { generateRandomNumber } from '@/utils/genRanNum'
+import { delay } from '@/utils/delay'
 
 // Обновление данных пользователя
 const mergeUserData = (originalData: UserProfile, updateData: EditUserRequest): UserProfile => ({
@@ -14,26 +14,44 @@ const mergeUserData = (originalData: UserProfile, updateData: EditUserRequest): 
   },
 })
 
-// Получение данных пользователя
+// GET /user/get-user
 export const getUser = async (): Promise<UserProfile> => {
-  await delay(1000)
-  return userData as UserProfile
+  try {
+    await delay(1000)
+    console.log('Данные пользователя:', userData)
+    return userData as UserProfile
+  } catch (error) {
+    throw error
+  }
 }
 
+// POST /file/upload
 export const uploadFile = async (file: File): Promise<FileUploadResponse> => {
-  console.log('Загруженый файл:', file.name)
-  await delay(1000)
+  try {
+    console.log('Загрузка файла:', file)
 
-  const response = { file_id: generateRandomNumber(1, 1000) }
-  return response
+    const formData = new FormData()
+    formData.append('file', file)
+    await delay(1000)
+
+    const response = { file_id: generateRandomNumber(1, 1000) }
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// Редактирование пользователя
+// PUT /user/edit
 export const editUser = async (data: EditUserRequest): Promise<UserProfile> => {
-  await delay(1000)
+  try {
+    await delay(1000)
 
-  const updatedData = mergeUserData(userData, data)
-  return updatedData as UserProfile
+    const updatedData = mergeUserData(userData, data)
+    console.log('Данные пользователя обновлены:', updatedData)
+    return updatedData as UserProfile
+  } catch (error) {
+    throw error
+  }
 }
 
 // Выносим методы

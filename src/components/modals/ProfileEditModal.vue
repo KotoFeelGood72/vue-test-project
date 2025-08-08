@@ -126,9 +126,11 @@ const onProfileSave = async () => {
   validationErrors.value = validation.errors;
 
   if (!validation.isValid) {
-    console.log("❌ Валидация не пройдена:", validation.errors);
+    console.log("Не пройдена валидация", validation.errors);
     return;
   }
+
+  console.log("Успешная валидация");
 
   try {
     let avatarId = user.value?.avatar.id || 1;
@@ -137,6 +139,9 @@ const onProfileSave = async () => {
     if (avatarFile.value?.file) {
       const uploadResponse = await ApiService.uploadFile(avatarFile.value.file);
       avatarId = uploadResponse.file_id;
+      console.log(" Файл загружен");
+    } else {
+      console.log(" Новый файл не выбран");
     }
 
     // Подготовка данных для отправки
@@ -153,6 +158,7 @@ const onProfileSave = async () => {
 
     await updateUser(updateData);
 
+    console.log("Профиль успешно обновлен");
     closeModal("editProfile");
   } catch (error) {
     console.error(error);
@@ -192,17 +198,6 @@ onMounted(() => {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   max-width: 608px;
   width: 100%;
-}
-
-.loading,
-.error {
-  text-align: center;
-  padding: 40px;
-  font-size: 18px;
-}
-
-.error {
-  color: #dc3545;
 }
 
 .profile_edit__inputs {

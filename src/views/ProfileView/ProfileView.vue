@@ -25,17 +25,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-}
-
-.loading,
-.error {
-  text-align: center;
-  padding: 40px;
-  font-size: 18px;
-}
-
-.error {
-  color: #dc3545;
+  min-height: 100dvh;
 }
 </style>
